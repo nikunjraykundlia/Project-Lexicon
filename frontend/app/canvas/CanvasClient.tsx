@@ -61,7 +61,7 @@ export function CanvasClient() {
   if (!hydrated) {
     return (
       <div className="flex flex-col h-screen">
-        <div className="h-16 glass" />
+        <div className="flex-none h-16 glass" />
         <SkeletonLayout />
       </div>
     );
@@ -70,7 +70,7 @@ export function CanvasClient() {
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
-      <div className="flex flex-1 pt-16 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden">
         <Sidebar />
         <BlockCanvas />
         <RightPanel />

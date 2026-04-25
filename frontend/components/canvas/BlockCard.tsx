@@ -35,7 +35,6 @@ export function BlockCard({ block }: BlockCardProps) {
 
   const updateBlock = useBlockStore((s) => s.updateBlock);
   const removeBlock = useBlockStore((s) => s.removeBlock);
-  const duplicateBlock = useBlockStore((s) => s.duplicateBlock);
   const selectBlock = useBlockStore((s) => s.selectBlock);
   const selectedBlockId = useBlockStore((s) => s.selectedBlockId);
   const variantBExclusions = useBlockStore((s) => s.variantBExclusions);
@@ -134,19 +133,6 @@ export function BlockCard({ block }: BlockCardProps) {
             ) : (
               <ChevronDown className="w-3.5 h-3.5" />
             )}
-          </button>
-        </Tooltip>
-
-        {/* Duplicate */}
-        <Tooltip content="Duplicate">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              duplicateBlock(block.id);
-            }}
-            className="p-1 rounded text-text-muted hover:text-text-primary opacity-0 group-hover:opacity-100 transition-all cursor-pointer"
-          >
-            <Copy className="w-3.5 h-3.5" />
           </button>
         </Tooltip>
 

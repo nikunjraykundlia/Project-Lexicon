@@ -5,7 +5,7 @@ import { Skeleton, SkeletonBlock } from '@/components/ui/Skeleton';
 
 export function SkeletonLayout() {
   return (
-    <div className="flex h-[calc(100vh-64px)] overflow-hidden">
+    <div className="flex h-full w-full overflow-hidden">
       {/* Left sidebar skeleton */}
       <div className="w-[280px] border-r border-border-subtle bg-bg-secondary/50 p-4 space-y-4">
         <Skeleton height={32} className="rounded-lg" />
