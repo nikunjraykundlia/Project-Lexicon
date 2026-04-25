@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+/* ─── Midnight Circuitry Design Tokens ──────────────────── */
+:root {
+  --bg-primary: #070B14;
+  --bg-secondary: #0D1526;
+  --bg-glass: rgba(13, 21, 38, 0.72);
+  --bg-card: #111827;
+  --border-subtle: rgba(99, 179, 237, 0.10);
+  --border-active: rgba(99, 179, 237, 0.35);
+  --accent-primary: #3B9EFF;
+  --accent-secondary: #A78BFA;
+  --accent-glow: rgba(59, 158, 255, 0.20);
+  --text-primary: #F0F6FF;
+  --text-secondary: #8BA4C0;
+  --text-muted: #4A6079;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --diff-add: #10B981;
+  --diff-del: #EF4444;
+  --diff-unchanged: #4A6079;
+
+  /* Block colors */
+  --block-role: #3B9EFF;
+  --block-context: #A78BFA;
+  --block-constraint: #F59E0B;
+  --block-format: #10B981;
+  --block-tone: #EC4899;
+  --block-example: #F97316;
+  --block-output-length: #06B6D4;
+}
+
+/* ─── Tailwind v4 Theme Extension ───────────────────────── */
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-glass: var(--bg-glass);
+  --color-bg-card: var(--bg-card);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-active: var(--border-active);
+  --color-accent: var(--accent-primary);
+  --color-accent-violet: var(--accent-secondary);
+  --color-accent-glow: var(--accent-glow);
+  --color-text-primary: var(--text-primary);
+  --color-text-dim: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-diff-add: var(--diff-add);
+  --color-diff-del: var(--diff-del);
+
+  --font-display: 'Syne', sans-serif;
+  --font-ui: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-blob: blob 12s infinite ease-in-out;
+  --animate-dot-pulse: dot-pulse 1.2s infinite;
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-glow-pulse: glow-pulse 2s ease-in-out infinite;
+}
+
+/* ─── Keyframe Animations ───────────────────────────────── */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -40px) scale(1.1); }
+  50% { transform: translate(-20px, 20px) scale(0.9); }
+  75% { transform: translate(20px, 40px) scale(1.05); }
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 158, 255, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(59, 158, 255, 0.35); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ─── Base Styles ───────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar Styling ─────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* ─── Utility Classes ───────────────────────────────────── */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+}
+
+.glass-card {
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #F0F6FF 0%, var(--accent-primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dot-grid {
+  background-image: radial-gradient(
+    circle,
+    rgba(99, 179, 237, 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+.noise-texture {
+  position: relative;
+}
+
+.noise-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Skeleton System ───────────────────────────────────── */
+.skeleton {
+  background: var(--bg-card);
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  animation: shimmer 1.5s infinite;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.04),
+    transparent
+  );
+}
+
+/* ─── Text Area Auto-Grow ───────────────────────────────── */
+.auto-grow-textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  width: 100%;
+  min-height: 60px;
+}
+
+.auto-grow-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* ─── Block Color Utilities ─────────────────────────────── */
+.block-glow-role { box-shadow: 0 0 20px rgba(59, 158, 255, 0.15); }
+.block-glow-context { box-shadow: 0 0 20px rgba(167, 139, 250, 0.15); }
+.block-glow-constraint { box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+.block-glow-format { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); }
+.block-glow-tone { box-shadow: 0 0 20px rgba(236, 72, 153, 0.15); }
+.block-glow-example { box-shadow: 0 0 20px rgba(249, 115, 22, 0.15); }
+.block-glow-output_length { box-shadow: 0 0 20px rgba(6, 182, 212, 0.15); }
+
+/* ─── Selection ─────────────────────────────────────────── */
+::selection {
+  background: rgba(59, 158, 255, 0.3);
+  color: var(--text-primary);
+}
